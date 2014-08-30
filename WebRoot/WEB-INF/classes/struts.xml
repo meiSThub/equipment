@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" /><!-- 当使用！的形式
+    来动态的家在方法的时候，此功能必须开启，即设置为true。 -->
+    <constant name="struts.devMode" value="false" /><!-- 把这个常量设置为true之后，每当我们的程序中有一点
+    修改之后，不需要重新启动服务器，tomcat就能够自动的更新内容，方便我们的开发。 即处于开发模式-->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant><!-- 要想
+    访问类中的静态方法，这个属性必须设置为true -->
+    <!-- 
+    <constant name="struts.ui.theme" value="css_xhtml" />设置ui主题 -->
+    
+	
+    <package name="errorDefault" extends="struts-default">
+		<global-results>
+		<!-- 设置一个异常的页面，当我们的访问出现问题的时候，就跳转到这个页面中  ，这是一个全局的变量 -->
+    		<result name="error">/error.jsp</result>
+    	</global-results>
+    	
+		 <global-exception-mappings>
+	<!-- 	 设置一个全局的异常处理，只要发生异常，就会匹配这个选项，从而找到error页面  -->
+    		<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+    	</global-exception-mappings>
+	</package>
+	
+	<package name="front" namespace="/" extends="struts-default">
+	<!-- 	<default-action-ref name="Category_list"/> -->
+        <action name="equip_list" class="com.action.EquipAction" method="list">
+            <result >/index.jsp</result>
+        </action>
+        <action name="add_equips" class="com.action.EquipAction" method="add">
+            <result >/index.jsp</result>
+        </action>
+    </package> 
+	
+    
+</struts>
